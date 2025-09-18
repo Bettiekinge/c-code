@@ -1,3 +1,6 @@
+// Betty Gakii Kinge
+// bcs-03-0104/2025
+// description calculating discount
 #include <iostream>
 using namespace std;
 
