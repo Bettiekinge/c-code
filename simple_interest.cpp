@@ -1,6 +1,6 @@
 // Betty Gakii Kinge
 // bcs-03-0104/2025
-// Description: Calculate simple interest and purchase discount
+// Description:Calculates weekly pay, taxes, and net income based on hours worked and hourly wage.
 
 #include <iostream>
 using namespace std;
