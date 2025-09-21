@@ -5,49 +5,50 @@
 #include <iostream>
 using namespace std;
 
-// function prototypes
-float simple_interest(float rate, int time, int principal);
-double purchase(int amount);
+// Function prototypes
+double calculateGrosspay(double hours, double rate);
+double calculateTax(double grosspay);
 
 int main() {
-    //  Simple Interest 
-    float s_interest, rate;
-    int time, principal;
+    double hours, rate;
 
-    cout << "Enter rate, time and principal: " << endl;
-    cin >> rate >> time >> principal;
+    cout << "Enter hours worked in a week: ";
+    cin >> hours;
 
-    s_interest = simple_interest(rate, time, principal);
-    cout << "The simple interest is: " << s_interest << endl;
+    cout << "Enter hourly wage: ";
+    cin >> rate;
 
-    //  Purchase Discount 
-    int amount;
-    cout << "Enter the amount of purchase: ";
-    cin >> amount;
+    // Function calls
+    double grosspay = calculateGrosspay(hours, rate);
+    double tax = calculateTax(grosspay);
+    double netpay = grosspay - tax;
 
-    double finalAmount = purchase(amount);
-    cout << "The final amount to pay = " << finalAmount << endl;
+    cout << "Gross pay: $" << grosspay << endl;
+    cout << "Taxes: $" << tax << endl;
+    cout << "Net pay: $" << netpay << endl;
 
     return 0;
 }
 
-// function definition for simple interest
-float simple_interest(float rate, int time, int principal) {
-    float interest;
-    interest = (principal * rate * time) / 100.0; // formula
-    return interest;
+// Function to calculate gross pay
+double calculateGrosspay(double hours, double rate) {
+    double grosspay;
+    if (hours <= 40) {
+        grosspay = hours * rate;
+    } else {
+        double overtimeHours = hours - 40;
+        grosspay = (40 * rate) + (overtimeHours * rate * 1.5);
+    }
+    return grosspay;
 }
 
-// function definition for purchase discount
-double purchase(int amount) {
-    double discount;
-    if (amount < 1000) {
-        discount = 0;// no discount
-    } else if (amount >= 1000 && amount <= 5000) {
-        discount = amount * 0.05;//5% discount
-    } else { 
-        discount = amount * 0.1;//10% discount
+// Function to calculate tax
+double calculateTax(double grosspay) {
+    double tax;
+    if (grosspay <= 600) {
+        tax = grosspay * 0.15;
+    } else {
+        tax = (600 * 0.15) + ((grosspay - 600) * 0.20);
     }
-    double finalAmount = amount - discount;
-    return finalAmount;
+    return tax;
 }
