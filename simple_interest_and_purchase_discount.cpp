@@ -45,7 +45,7 @@ double purchase(int amount) {
         discount = 0;// no discount
     } else if (amount >= 1000 && amount <= 5000) {
         discount = amount * 0.05;//5% discount
-    } else { 
+    } else if(amount >= 5000){ 
         discount = amount * 0.1;//10% discount
     }
     double finalAmount = amount - discount;
